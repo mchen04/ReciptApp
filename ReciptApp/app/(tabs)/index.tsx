@@ -34,7 +34,9 @@ export default function TabOneScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>SplitIt</Text>
+            <View style={styles.titleContainer}>
+                <Image source={require('./SplitIt_logo.png')} style={styles.titleImage} />
+            </View>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={pickImage} style={styles.button}>
                     <Text style={styles.buttonText}>Upload Receipt</Text>
@@ -43,7 +45,9 @@ export default function TabOneScreen() {
                     <Text style={styles.buttonText}>Take Photo</Text>
                 </TouchableOpacity>
             </View>
-            {selectedImage && <Image source={{ uri: selectedImage }} style={styles.image} />}
+            {selectedImage ? (
+                <Image source={{ uri: selectedImage }} style={styles.image} />
+            ) : null}
         </View>
     );
 }
@@ -55,10 +59,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#f5f5f5',
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
+    titleContainer: {
         marginBottom: 20,
+    },
+    titleImage: {
+        width: 200,
+        height: 50, // Adjust the height as needed
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -77,7 +83,7 @@ const styles = StyleSheet.create({
     },
     image: {
         marginTop: 20,
-        width: 200,
-        height: 200,
+        width: 1000,
+        height: 1000,
     },
 });

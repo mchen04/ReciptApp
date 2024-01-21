@@ -151,9 +151,6 @@ export default function TabTwoScreen() {
         <Button title="Add Row" onPress={addItemRow} />
         <Button title="Delete Row" onPress={deleteItemRow} />
       </View>
-
-      {/* Clear Button */}
-      <Button title="Clear" onPress={resetItems} />
     </ScrollView>
   );
 }
