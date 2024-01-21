@@ -141,6 +141,9 @@ export default function TabTwoScreen() {
 
   return (
     <ScrollView style={styles.container}>
+      {/* Title */}
+      <Text style={styles.title}>Items</Text>
+
       {items.map(renderItem)}
       
       {/* Add Row and Delete Row Buttons */}
@@ -159,6 +162,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20, // Add some space between the title and items
+    textAlign: 'center', // Center the title
   },
   itemRow: {
     flexDirection: 'row',
