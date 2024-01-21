@@ -1,5 +1,6 @@
 from PIL import Image
 import pytesseract
+import sys
 
 pytesseract.pytesseract.tesseract_cmd = '/opt/homebrew/bin/tesseract'  # Adjust the path as needed
 
@@ -10,7 +11,6 @@ def img_to_text(receipt):  # converting image to text
 
 def extract_items(text):
     items = {}
-
     lines = text.split('\n')
 
     for line in lines:
@@ -23,7 +23,7 @@ def extract_items(text):
             if words and words[0].isdigit():
                 item_number = int(words[0])
                 items[item_name] = {'item_number': item_number, 'price': price}
-
+    return items
 
 def extract_totals(text):
     totals = {
@@ -45,6 +45,11 @@ def extract_totals(text):
     return totals
 
 if __name__ == '__main__':
-    receipt = input("Enter name of picture: ")
-    img_to_text = img_to_text(receipt)
-    print(img_to_text)
+    if len(sys.argv) > 1:
+        receipt = sys.argv[1]
+        extracted_text = img_to_text(receipt)
+        print(extracted_text)
+        print("Extracted Items: ", extract_items(extracted_text))
+        print("Extracted Totals: ", extract_totals(extracted_text))
+    else:
+        print("No image file path provided.")
