@@ -108,22 +108,6 @@ export default function TabTwoScreen() {
     </View>
   );
 
-  // Function to reset items to their default values
-  const resetItems = () => {
-    const defaultItems = [
-      { name: 'Pizza', price: '10.90', isSelected: false, consumedPercentage: 100 },
-      { name: 'Burger', price: '8.60', isSelected: false, consumedPercentage: 100 },
-      { name: 'Soup', price: '9.25', isSelected: false, consumedPercentage: 100 },
-      { name: 'Crab', price: '8.50', isSelected: false, consumedPercentage: 100 },
-      { name: 'Sushi', price: '15.00', isSelected: false, consumedPercentage: 100 },
-      { name: 'Water', price: '8.09', isSelected: false, consumedPercentage: 100 },
-      { name: 'Fries', price: '13.10', isSelected: false, consumedPercentage: 100 },
-      { name: 'Ham', price: '1.34', isSelected: false, consumedPercentage: 100 },
-    ];
-    setItems(defaultItems);
-    setRowCount(8); // Reset row count
-  };
-
   const addItemRow = () => {
     setRowCount(rowCount + 1); // Increment row count
     const newItem = { name: '', price: '', isSelected: false, consumedPercentage: 100 };
@@ -207,7 +191,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: '#0080FE',
   },
   checkboxText: {
     color: 'white',
