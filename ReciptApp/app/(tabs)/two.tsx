@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity, ScrollView, Text, Button } from 'react-native';
 
 interface Item {
   name: string;
@@ -31,18 +31,9 @@ export default function TabTwoScreen() {
     { name: 'Water', price: '8.09', isSelected: false, consumedPercentage: 100 },
     { name: 'Fries', price: '13.10', isSelected: false, consumedPercentage: 100 },
     { name: 'Ham', price: '1.34', isSelected: false, consumedPercentage: 100 },
-    { name: 'Cheese', price: '18.37', isSelected: false, consumedPercentage: 100 },
-    { name: 'Wagyu', price: '83.20', isSelected: false, consumedPercentage: 100 },
-    { name: 'Caprisun', price: '11.06', isSelected: false, consumedPercentage: 100 },
-    { name: 'Chick-fil-a', price: '42.50', isSelected: false, consumedPercentage: 100 },
-    { name: 'Water', price: '8.09', isSelected: false, consumedPercentage: 100 },
-    { name: 'Fries', price: '13.10', isSelected: false, consumedPercentage: 100 },
-    { name: 'Ham', price: '1.34', isSelected: false, consumedPercentage: 100 },
-    { name: 'Cheese', price: '18.37', isSelected: false, consumedPercentage: 100 },
-    { name: 'Wagyu', price: '83.20', isSelected: false, consumedPercentage: 100 },
-    { name: 'Caprisun', price: '11.06', isSelected: false, consumedPercentage: 100 },
-    { name: 'Chick-fil-a', price: '42.50', isSelected: false, consumedPercentage: 100 },
   ]);
+
+  const [rowCount, setRowCount] = useState(8); // Initial row count
 
   const handleNameChange = (index: number, newName: string) => {
     const newItems = [...items];
@@ -78,7 +69,6 @@ export default function TabTwoScreen() {
     newItems[index].consumedPercentage = percentage;
     setItems(newItems);
   };
-  
 
   const toggleCheckbox = (index: number) => {
     const newItems = [...items];
@@ -118,9 +108,49 @@ export default function TabTwoScreen() {
     </View>
   );
 
+  // Function to reset items to their default values
+  const resetItems = () => {
+    const defaultItems = [
+      { name: 'Pizza', price: '10.90', isSelected: false, consumedPercentage: 100 },
+      { name: 'Burger', price: '8.60', isSelected: false, consumedPercentage: 100 },
+      { name: 'Soup', price: '9.25', isSelected: false, consumedPercentage: 100 },
+      { name: 'Crab', price: '8.50', isSelected: false, consumedPercentage: 100 },
+      { name: 'Sushi', price: '15.00', isSelected: false, consumedPercentage: 100 },
+      { name: 'Water', price: '8.09', isSelected: false, consumedPercentage: 100 },
+      { name: 'Fries', price: '13.10', isSelected: false, consumedPercentage: 100 },
+      { name: 'Ham', price: '1.34', isSelected: false, consumedPercentage: 100 },
+    ];
+    setItems(defaultItems);
+    setRowCount(8); // Reset row count
+  };
+
+  const addItemRow = () => {
+    setRowCount(rowCount + 1); // Increment row count
+    const newItem = { name: '', price: '', isSelected: false, consumedPercentage: 100 };
+    setItems([...items, newItem]);
+  };
+
+  const deleteItemRow = () => {
+    if (rowCount > 0) {
+      setRowCount(rowCount - 1); // Decrement row count
+      const updatedItems = [...items];
+      updatedItems.pop(); // Remove the last item
+      setItems(updatedItems);
+    }
+  };
+
   return (
     <ScrollView style={styles.container}>
       {items.map(renderItem)}
+      
+      {/* Add Row and Delete Row Buttons */}
+      <View style={styles.buttonContainer}>
+        <Button title="Add Row" onPress={addItemRow} />
+        <Button title="Delete Row" onPress={deleteItemRow} />
+      </View>
+
+      {/* Clear Button */}
+      <Button title="Clear" onPress={resetItems} />
     </ScrollView>
   );
 }
@@ -183,5 +213,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 5,
     textAlign: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
   },
 });
