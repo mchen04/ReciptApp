@@ -57,20 +57,20 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#90EE90', // Light green background
     },
     titleContainer: {
-        marginBottom: 20,
+        marginBottom: 40, // Increased bottom margin
     },
     titleImage: {
-        width: 200,
-        height: 50, // Adjust the height as needed
+        width: 400, // Double the width
+        height: 100, // Double the height
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '100%',
-        paddingHorizontal: 20,
+        paddingHorizontal: 30, // Adjusted horizontal padding for more space
     },
     button: {
         backgroundColor: '#007bff',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
     image: {
         marginTop: 20,
-        width: 1000,
-        height: 1000,
+        width: 1000, // Adjust if needed
+        height: 1000, // Adjust if needed
     },
 });
